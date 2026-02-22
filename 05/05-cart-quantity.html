@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity</title>
+</head>
+<body>
+    <button onclick="updateCart(1)">Add to Cart</button>
+    <button onclick="updateCart(2)">+2</button>
+    <button onclick="updateCart(3)">+3</button>
+    <button onclick="updateCart(4)">+4</button>
+    <button onclick="updateCart(5)">+5</button>
+    <button onclick="updateCart(-1)">Remove from cart</button>
+    <button onclick="updateCart(-2)">-2</button>
+    <button onclick="updateCart(-3)">-3</button>
+    <button onclick="resetCart()">Reset Cart</button>
+
+    <p id="cartDisplay">Cart Quantity: 0</p>
+
+    <script>
+        let cartQuantity = 0;
+
+        function updateCart(amount) {
+            const maxQuantity = 10;
+            const minQuantity = 0;
+            const newQuantity = cartQuantity + amount;
+            
+            if(newQuantity > maxQuantity){  
+                alert('The cart is full');
+                cartQuantity = maxQuantity;
+            }else if(newQuantity < minQuantity){
+                alert('Not enough items in the cart');
+                cartQuantity = minQuantity;
+            }else{
+                cartQuantity = newQuantity;
+            }
+
+            document.getElementById("cartDisplay").innerText = `Cart Quantity: ${cartQuantity}`;
+            console.log(`Cart Quantity: ${cartQuantity}`);
+        }
+
+        function resetCart() {
+            cartQuantity = 0;
+            document.getElementById("cartDisplay").innerText = `Cart Quantity: ${cartQuantity}`;
+            console.log(`Cart Quantity: ${cartQuantity}`);
+        }
+    </script>
+</body>
+</html>

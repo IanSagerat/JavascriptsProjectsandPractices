@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Exercise</title>
+</head>
+<body>
+    <script>
+        const order = {
+            product: 'basketball',
+            price: 2095 / 100,
+            "delivery-time": "3 days"
+        };
+        const {product, price, "delivery-time": deliveryTime} = order;
+        console.log(product);
+        console.log(order.price += 500 / 100);
+        console.log(order["delivery-time"]);
+
+        function comparePrice(product1, product2){
+            if(product1.price < product2.price){
+                return product1;
+            }else{
+                return product2;
+            }
+        }
+
+        const productA = {
+            name: 'Basketball',
+            price: 10.95
+        };
+
+        const productB = {
+            name: 'Basketball',
+            price: 10.95
+        };
+
+        const cheapestPrice = comparePrice(productA, productB);
+        console.log(cheapestPrice);
+
+        function isSameProduct(product1, product2){
+            if((product1.name === product2.name ) && (product1.price === product2.price)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        const isProductSame = isSameProduct(productA, productB);
+        console.log(isProductSame);
+
+        const originalString = "Good Morning!";
+        const toLowerString = originalString.toLowerCase();
+        console.log(toLowerString);
+        const repeatedString = originalString.repeat(3);
+        console.log(repeatedString);
+
+        function repeatUsingLoop(str, times){
+            let result = "";
+            for(let i = 0; i < times; i++){
+                result += str;
+            }
+            return result;
+        }
+
+        console.log(repeatUsingLoop("say yes! ", 4));
+
+        function withArray(str, times){
+            return str.repeat(times);
+        }
+
+        console.log(withArray("Hi! ", 5));
+    </script>
+</body>
+</html>

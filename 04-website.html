@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise</title>
+
+    <style>
+        .Add{
+            background-color: yellow;
+        }
+        .Buy{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div><p>Adults Plain Cotton T-shirt</p></div>
+    <div><p>Price: $7.99</p></div>
+
+    <div class="button">
+        <button class="Add" onclick="AddtoCart()">Add to cart</button>
+        <button class="Buy" onclick="buyNow()">Buy now</button>
+        <button class="Cancel" onclick="Cancel()">Cancel</button>
+    </div>
+
+    <script>
+        function buyNow() {
+            alert('Loading...');
+            setTimeout(() => {
+                alert('Purchased');
+            }, 2000);
+        }
+
+        function AddtoCart(){
+            alert('Loading...');
+            setTimeout(() => {
+                alert('Successfully Added');
+            }, 2000);
+        }
+
+        function Cancel(){
+            alert('Loading...');
+            setTimeout(() => {
+                alert('Cancel Purchased');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Exercise</title>
+</head>
+<body>
+    <button class="button">9a</button>
+    <button class="button2">9b</button>
+
+    <button class="heads" onclick="displayChoice('heads')">heads</button>
+    <button class="tails" onclick="displayChoice('tails')">tails</button>
+
+    <p class="displayChoice"></p>
+
+    <input onkeydown="pressedKey()" class="name">
+    <button onclick="displayName()">Enter</button>
+
+    <p class="nameDisplay"></p>
+
+    Enter your name: <input class="myName" onkeyup="displayNames()">
+    <p>Your name is: <span class="displayName"></span></p>
+    <script>
+
+        function displayNames(){
+            var name = document.querySelector('.myName').value;
+            document.querySelector('.displayName').innerHTML = name;
+        }
+
+        function pressedKey(){
+            if(event.key === 'Enter') displayName();
+        }
+
+        function displayName(){
+            const name = document.querySelector('.name').value;
+            const validator = document.querySelector('.nameDisplay');
+            if(name === '') return validator.innerHTML = 'Enter your name!';
+            validator.innerHTML = `Your name is: ${name}`;
+        }
+        const displayButton = document.querySelector('.button');
+        console.log(displayButton);
+        const displayButton2 = document.querySelector('.button2').innerHTML = 
+        '9b done!';
+        console.log(displayButton2);
+        
+        function displayChoice(choice){   
+            document.querySelector('.displayChoice').innerHTML = `You chose: ${choice}`;
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP</title>
+</head>
+<body>
+    <script>
+        //1. Constuctor Pattern
+        //Use when you need multiple similar objects
+
+        function Car(make, model){
+            this.make = make;
+            this.model = model;
+        }
+
+        const car1 = new Car("Toyota", "Corrolla");
+        console.log(car1);
+
+        //2. Factory Pattern
+        //Encapsulates object creation without exposing logic.
+
+        function CarFactory(){
+            this.createCar = function(type){
+                if(type === "sedan") return {type, doors: 4}
+                if(type === "sport") return {type, doors: 2}
+            };
+        }
+
+        const factory = new CarFactory();
+        const myCar = factory.createCar("sedan");
+
+        console.log(myCar);
+    </script>
+</body>
+</html>

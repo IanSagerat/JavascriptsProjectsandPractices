@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="../Csstyle/10calculator.css">
+</head>
+<body>
+    <div class="history">
+        <p class="calcHistory"></p>
+    </div>
+    <div class="calculator">
+        <p class="js-calculation calculation" ></p>
+        <div class="alignment">
+            <p class="row">
+                <button class="calculation-button gray" onclick="updateCalculation('1')">1</button>
+                <button class="calculation-button gray" onclick="updateCalculation('4')">4</button>
+                <button class="calculation-button gray" onclick="updateCalculation('7')">7</button>
+                <button class="calculation-button gray" onclick="updateCalculation('0')">0</button>
+                <button class="calculation-button gray fontSize" onclick="clearCalculation()">Clear</button>
+            </p>
+            <p class="row">
+                <button class="calculation-button gray" onclick="updateCalculation('2')">2</button>
+                <button class="calculation-button gray" onclick="updateCalculation('5')">5</button>
+                <button class="calculation-button gray" onclick="updateCalculation('8')">8</button>
+                <button class="calculation-button gray" onclick="updateCalculation('.')">.</button>
+            </p>
+            <p class="row">
+                <button class="calculation-button gray" onclick="updateCalculation('3')">3</button>
+                <button class="calculation-button gray" onclick="updateCalculation('6')">6</button>
+                <button class="calculation-button gray" onclick="updateCalculation('9')">9</button>
+                <button class="calculation-button gray" onclick="displayCalculation('=')">=</button>
+            </p>
+            <p class="row">
+                <button class="calculation-button orange" onclick="updateCalculation('+')">+</button>
+                <button class="calculation-button orange" onclick="updateCalculation('-')">-</button>
+                <button class="calculation-button orange" onclick="updateCalculation('*')">*</button>
+                <button class="calculation-button orange" onclick="updateCalculation('/')">/</button>s
+            </p>
+        </div>
+    </div>
+    <script src="../scripts/calculator.js"></script>
+</body>
+</html>

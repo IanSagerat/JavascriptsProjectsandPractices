@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            width: 50px;
+            height: 40px;
+            margin: 3px;
+            font-size: 16px;
+        }
+        .row {
+            margin-bottom: 5px;
+        }
+        #calculationDisplay {
+            min-height: 30px;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="calculationDisplay"></p>
+
+    <div class="row">
+        <button onclick="updateCalculation(1)">1</button>
+        <button onclick="updateCalculation(2)">2</button>
+        <button onclick="updateCalculation(3)">3</button>
+        <button onclick="updateCalculation('+')">+</button>
+    </div>
+
+    <div class="row">
+        <button onclick="updateCalculation(4)">4</button>
+        <button onclick="updateCalculation(5)">5</button>
+        <button onclick="updateCalculation(6)">6</button>
+        <button onclick="updateCalculation('-')">-</button>
+    </div>
+
+    <div class="row">
+        <button onclick="updateCalculation(7)">7</button>
+        <button onclick="updateCalculation(8)">8</button>
+        <button onclick="updateCalculation(9)">9</button>
+        <button onclick="updateCalculation('*')">*</button>
+    </div>
+
+    <div class="row">
+        <button onclick="updateCalculation(0)">0</button>
+        <button onclick="updateCalculation('.')">.</button>
+        <button onclick="updateCalculation('=')">=</button>
+        <button onclick="updateCalculation('/')">/</button>
+    </div>
+
+    <div>
+        <button onclick="resetCalculation()">Clear</button>
+    </div>
+
+    <script>
+        const display = document.getElementById('calculationDisplay');
+
+        let calculation = localStorage.getItem('calculation') || '';
+        let resultShown = false;
+
+        display.innerText = calculation;
+
+        function isOperator(char) {
+            return ['+', '-', '*', '/'].includes(char);
+        }
+
+        function updateCalculation(value) {
+
+            if (value === '=') {
+                try {
+                    calculation = eval(calculation).toString();
+                    resultShown = true;
+                } catch {
+                    calculation = 'Error';
+                    resultShown = true;
+                }
+            }
+
+            else if (isOperator(value)) {
+
+                if (resultShown) {
+                    resultShown = false;
+                }
+
+                const lastChar = calculation.slice(-1);
+
+                if (isOperator(lastChar)) {
+                    calculation = calculation.slice(0, -1) + value;
+                } 
+                else if (calculation !== '') {
+                    calculation += value;
+                }
+            }
+
+            else {
+                if (resultShown) {
+                    calculation = value.toString();
+                    resultShown = false;
+                } else {
+                    calculation += value;
+                }
+            }
+
+            localStorage.setItem('calculation', calculation);
+
+            display.innerText = calculation;
+        }
+
+        function resetCalculation() {
+            calculation = '';
+            resultShown = false;
+            display.innerText = '';
+
+            // ✅ Clear stored calculation
+            localStorage.setItem('calculation', '');
+        }
+    </script>
+
+</body>
+</html>

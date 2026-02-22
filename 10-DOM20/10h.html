@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping</p>
+    <p>Orders over $40 = FREE shipping</p>
+    <input placeholder="Cost of order" class="cost cost-input" onkeydown="pressedKey()">
+    <button class="calculate-button" onclick="calculateCost()">Calculate</button>
+
+    <p class="totalCost"></p>
+    
+    <script>
+
+    function calculateCost(){
+        const calculateCost = document.querySelector('.cost');
+        const total = document.querySelector('.totalCost');
+        let cost = parseFloat(calculateCost.value);
+
+        if(isNaN(cost)){ 
+        total.innerHTML =
+        '<p style="color: red">Error: Please enter a valid number.</p>';
+        return;
+        }
+        if(cost <= 0){ 
+        total.innerHTML = 
+        '<p style="color: red">Error: cost cannot be $0 or less than $0.</p>';
+        return;
+        }
+        
+        let totalCost = cost;
+        if(cost < 40){
+        totalCost += 10;
+        }
+        total.innerHTML = 
+        `$${totalCost}`;
+    }                        
+    
+    function pressedKey(){
+        if(event.key === 'Enter') calculateCost();
+    }
+
+    </script>
+</body>
+</html>

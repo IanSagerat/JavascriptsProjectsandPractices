@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample</title>
+</head>
+<style>
+    body{
+        background: #fff;
+        color: #111;
+        transition: .5s;
+    }
+    body.dark{
+        background: #111;
+        color: #fff;
+    }
+
+    .wrapper{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .progress-container{
+        display: flex;
+        align-items: center;
+        height: 50px;
+        width: 500px;
+    }
+
+    .progressbar{
+        height: 20px;
+        width: 100%;
+        border-radius: 10px;
+        background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    }
+.loader {
+    perspective: 700px;
+}
+
+.loader span {
+    color: #546de5;
+    font-weight: 400;
+    font-size: 2rem;
+    display: inline-block;
+    transform-origin: 50% 70%;
+    animation: flip 1.8s infinite;
+}
+
+/* delay each letter */
+.loader span:nth-child(1) { animation-delay: 0s; }
+.loader span:nth-child(2) { animation-delay: 0.1s; }
+.loader span:nth-child(3) { animation-delay: 0.2s; }
+.loader span:nth-child(4) { animation-delay: 0.3s; }
+.loader span:nth-child(5) { animation-delay: 0.4s; }
+.loader span:nth-child(6) { animation-delay: 0.5s; }
+.loader span:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: rotateX(360deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: rotateX(360deg);
+        opacity: 1;
+    }
+}
+</style>
+<body>
+
+    <div class="wrapper">
+        <input type="text" name="" id="" placeholder="Write...">
+        <button id="btn">check</button>
+    </div>
+    <div class="loader">
+        <span>L</span>
+        <span>O</span>
+        <span>A</span>
+        <span>D</span>
+        <span>I</span>
+        <span>N</span>
+        <span>G</span>
+    </div>
+    <div class="wrapper">
+        <div class="progress-container">
+            <div class="progressbar" id="progress"></div>
+        </div>
+        <div class="number" id="data">0%</div>
+    </div>
+
+    <h2 id="text"></h2>
+    <button id="button">Dark Mode</button>
+    <script>
+        const input = document.querySelector('input');
+        const buttons = document.getElementById('btn');
+
+        const textToSpeech = () => {
+            let text = input.value;
+            const voice = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(voice);
+        }
+
+        buttons.addEventListener('click', textToSpeech);
+
+        const button = document.getElementById('button');
+        const text = document.getElementById('text');
+        const words = [
+            "Hi everyone!",
+            "Welcome to my Portfolio",
+            "I am Ian L. Tarega",
+            "A full stack developer"
+        ];
+
+        button.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            
+            button.textContent = document.body.classList.contains('dark')
+            ? 'Light Mode'
+            : 'Dark Mode';
+        });
+
+        let i = 0;
+        let j = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[i];
+            text.textContent = currentWord.slice(0, j);
+
+            if (!isDeleting && j < currentWord.length) {
+                j++;
+            }  
+            else if (isDeleting && j > 0) {
+                j--;
+            }
+            else if (!isDeleting && j === currentWord.length) {
+                setTimeout(() => isDeleting = true, 800);
+            }
+            else if (isDeleting && j === 0) {
+                isDeleting = false;
+                i = (i + 1) % words.length;
+            }
+
+            setTimeout(type, isDeleting ? 50 : 100);
+        }
+
+        type();
+
+        function startProgress(){
+            const prg = document.getElementById('progress');
+            const data = document.getElementById('data');
+            let index = 0;
+
+            setInterval(() => {
+                index++;
+                if(index > 100){
+                    index = 0
+                }
+                    prg.style.width = index + '%';
+                    data.innerText = index + '%';
+            }, 35)
+        }
+        startProgress();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise No. 6</title>
+</head>
+<body>
+    <div style="padding-bottom: 5px;">
+    <label for="time">Time:</label>
+    <input type="number" name="hour" id="hour">
+    </div>
+    <button onclick="showGreeting()" style="margin-bottom: 5px;">Show greeting</button>
+    <div style="padding-bottom: 5px;">
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age">
+    </div>
+    <button onclick="showResult()">Evaluate age</button>
+
+    <div style="padding-top: 5px; margin-bottom: 5px;">
+        <label for="tossCoin">Toss a Coin:</label>
+        <input type="text" name="headortail" id="headortail">
+    </div>
+    <button onclick="tossCoin()">Toss a Coin</button>
+    <script>
+        function showGreeting (){
+        const name = 'Ian';
+        const hour = document.getElementById('hour').value;
+        
+        if(hour === ''){
+            alert('Please enter an hour');
+            return;
+        }
+
+        const inputHour = Number(hour);
+
+        if( isNaN(inputHour) || inputHour < 0 || inputHour > 23){
+            alert('Please enter a valid hour (0 - 23)');
+            return;
+        }
+
+        const greeting = (hour >=6 && hour <= 12 ) ? `Good Morning ${name}!` : (hour >= 13 && hour <= 17) ? `Good Afternoon ${name}!` :
+        `Good Night ${name}`;
+        alert(greeting);
+        }
+
+        function showResult(){
+        const isHoliday = 1;
+        const age = document.getElementById('age').value;
+
+        if(age === ''){
+            alert('Input your age');
+            return;
+        }
+        const checkAge = (isHoliday &&(age <= 6 || age >= 65)) ? `Discount` : `No discount`;
+        alert(checkAge);
+        }
+
+        function tossCoin(){
+            const chooseFace = document.getElementById('headortail').value;
+            if(chooseFace === ''){
+                alert('Input Heads or Tails');
+                return;
+            }else if(chooseFace !== 'Heads' && chooseFace !== 'Tails'){
+                alert('Input only Heads or Tails');
+                return;
+            }
+            const coinToss = Math.random();
+            const resultToss = (coinToss < 0.5) ? 'Heads' : 'Tails';
+            
+            let result = (resultToss === chooseFace) ? 'You win' : 'You lose';
+            console.log(coinToss);
+            alert(result);
+        }
+
+    </script>
+</body>
+</html>

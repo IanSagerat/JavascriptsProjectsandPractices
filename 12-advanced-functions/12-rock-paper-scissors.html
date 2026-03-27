@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>12 Rock Paper Scissors</title>
     <style>
         body {
             background-color: rgb(25,25,25);
@@ -58,7 +58,7 @@
     <p class="js-score"></p>
 
     <button class="score-reset" onclick="resetScore()">Reset Score</button>
-    <button class="auto" onclick="autoPlay()">Auto Play</button>
+    <button class="auto" onclick="autoPlay()">Play</button>
     <script>
         const message = false && 'Hello';
         console.log(message);
@@ -83,6 +83,29 @@
             tie: 0
         };
         
+        let isAutoPlaying = false;
+        let intervalId;
+        const playButton = document.querySelector('.auto');
+
+        function autoPlay(){
+            if(!isAutoPlaying){
+                playButton.innerHTML = 'Stop';
+                intervalId = setInterval(() => {
+                    const playerMove = pickComputerMove();
+                    playGame(playerMove);
+                }, 1000);
+                isAutoPlaying = true;
+            } else {
+                playButton.innerHTML = 'Play';
+                clearInterval(intervalId);
+                isAutoPlaying = false;
+            }
+        }
+
+        document.addEventListener('keydown', pressedKey)
+        function pressedKey(event){
+            if(event.key === 'a' || event.key === 'A') autoPlay()
+        }
         function playGame(playerMove){
             const computerMove = pickComputerMove();
 

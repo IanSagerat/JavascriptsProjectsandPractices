@@ -36,8 +36,39 @@ run(function() {
     console.log('hello'); 
 });*/
 
-setTimeout(function(){
-    console.log('timeout');
-}, 3000);
+// setTimeout(function(){
+//     console.log('timeout');
+// }, 3000);
 
-console.log('next line');
+// console.log('next line');
+
+const arrowFunction = (param, param2) => {
+    console.log('hello arrow');
+    return 5;
+};
+arrowFunction();
+
+const regularFuction = function(param, param2){
+    console.log('regular function');
+    return 5;
+};
+regularFuction();
+
+const oneParam = (param) => {
+    console.log(param + 1);
+};
+
+oneParam(2);
+
+const oneLine = () => 2 + 3;
+console.log(oneLine());
+
+console.log([1, -1, 5].filter((value, index) => {
+    return value >= 0;
+}));
+
+console.log([1, 1, 3].map((value, index) => {
+    return value * 2;
+}));
+
+console.log([1, 1, 2].map((value) => value * 5));

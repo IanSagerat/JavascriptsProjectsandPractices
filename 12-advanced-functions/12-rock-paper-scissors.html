@@ -40,17 +40,11 @@
 </head>
 <body>
     <p class="title">Rock Paper Scissors</p>
-    <button onclick="
-    playGame('rock');
-    " class="move-button"><img src="../images/rock-emoji.png" alt="" class="move-icon"></button>
+    <button class="move-button rock-button"><img src="../images/rock-emoji.png" alt="" class="move-icon"></button>
 
-    <button onclick="
-    playGame('paper');
-    " class="move-button"><img src="../images/paper-emoji.png" alt="" class="move-icon"></button>
+    <button class="move-button paper-button"><img src="../images/paper-emoji.png" alt="" class="move-icon"></button>
 
-    <button onclick="
-    playGame('scissors');
-    " class="move-button"><img src="../images/scissors-emoji.png" alt="" class="move-icon"></button>
+    <button class="move-button scissor-button"><img src="../images/scissors-emoji.png" alt="" class="move-icon"></button>
     
     <p class="playerPick move-icon" style="margin-top: 30px;"></p>
     <p class="computerMove move-icon"></p>
@@ -106,6 +100,21 @@
         function pressedKey(event){
             if(event.key === 'a' || event.key === 'A') autoPlay()
         }
+
+            document.body.addEventListener('keydown', (event) => {
+            if(event.key === 'r' || event.key === 'R') playGame('rock')
+            else if(event.key === 'p' || event.key === 'P') playGame('paper')
+            else if(event.key === 's' || event.key === 'S') playGame('scissors')
+        });
+        document.querySelector('.rock-button').addEventListener('click', () => {
+            playGame('rock');
+        });
+        document.querySelector('.paper-button').addEventListener('click', () => {
+            playGame('paper');
+        });
+        document.querySelector('.scissor-button').addEventListener('click', () => {
+            playGame('scissors');
+        });
         function playGame(playerMove){
             const computerMove = pickComputerMove();
 

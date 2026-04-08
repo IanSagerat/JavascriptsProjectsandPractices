@@ -42,16 +42,14 @@ let timeoutId;
 let refresh = false;
 
 addButton.addEventListener('click', () => {
-    if(!refresh){
-    displayAdd.innerHTML = 'Added';
-    clearTimeout(timeoutId);
-    refresh = true;
-    } else {
-        timeoutId = setTimeout(() => {
+    (!refresh) ?
+    (displayAdd.innerHTML = 'Added',
+    clearTimeout(timeoutId),
+    refresh = true)
+    : (timeoutId = setTimeout(() => {
         displayAdd.innerHTML = '';
-        }, 2000);
-        refresh = false;
-    }
+        }, 2000),
+        refresh = false)
 });
 
 //12g, 12h and 12i
@@ -60,19 +58,13 @@ const originalTitle = document.title;
 let isOriginal = true;
 
 setInterval(() => {
-    if(message == 0) {
-        document.title = originalTitle;
-    } else {
-        if(isOriginal){
-            if(message === 1) {
-                document.title = `(${message}) New message`;
-            } else {
-                document.title = `(${message}) New messages`;
-            }
-        } else {
-            document.title = originalTitle;
-        }
-    }
+    (message == 0) ?
+        document.title = originalTitle
+        : (isOriginal) ?
+            (message === 1) ?
+                document.title = `(${message}) New message` :
+                document.title = `(${message}) New messages`
+            : document.title = originalTitle;
     isOriginal = !isOriginal;
 }, 2000);
 
